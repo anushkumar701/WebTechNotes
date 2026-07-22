@@ -1,0 +1,203 @@
+# CSS
+
+## Introduction
+
+CSS stands for Cascading Style Sheets.
+
+It is used to style and arrange the elements on a webpage.
+
+HTML is used to create the structure of a webpage. To style the webpage, CSS is required.
+
+## Ways to Apply CSS
+
+CSS can be applied in three ways:
+
+1. Inline CSS
+2. Internal CSS
+3. External CSS
+
+## Inline CSS
+
+Inline CSS is the process of writing CSS directly inside an HTML element.
+
+For this, the `style` attribute is used.
+
+### Example
+
+```html
+<h1 style="color:red">Welcome to CSS</h1>
+```
+
+## Internal CSS
+
+Internal CSS is the process of writing CSS inside the same HTML file.
+
+For this, the `<style></style>` tag is used.
+
+The `<style></style>` tag should be placed inside the `<head></head>` tag.
+
+### Example
+
+```html
+<head>
+    <style>
+        h2{
+            color:green;
+        }
+    </style>
+</head>
+```
+
+## External CSS
+
+External CSS is written in a separate CSS file and linked with the HTML file.
+
+The CSS file extension is `.css`.
+
+The `<link>` tag is used to connect the HTML file and CSS file.
+
+The `<link>` tag should be written inside the `<head></head>` tag.
+
+### Example
+
+```html
+<link rel="stylesheet" href="style.css">
+```
+
+## Note
+
+* Inline CSS has the highest priority.
+* Internal CSS and External CSS have the same priority.
+* If both are applied to the same element, the style written last will be applied.
+
+# Font Property
+
+Font properties are used to change the appearance of text content.
+
+## Properties
+
+### 1. font-size
+
+Used to change the size of the font.
+
+### 2. font-weight
+
+Used to make the font bold or lighter.
+
+Values can be given from `100` to `900`.
+
+### 3. font-style
+
+Used to change the style of the font.
+
+### 4. font-family
+
+Used to change the font family of the text.
+
+Example:    
+
+
+
+
+## Selectors
+    
+ *It is used to select the HTML Elements to provide CSS/Styling.
+ 
+ *Syntax*
+    selectorname
+    {
+        //css property
+    }
+
+*In Css we have 5 types of Selectors
+
+1.Simple Selector
+2.Combination Selector
+3.Pseudo Class Selector
+4.Pseudo Element Selector
+5.Attribute Selector
+
+Simple Selector:
+    In Simple Selector We have 5 types.
+        1.Tagname Selector
+        2.id Selector
+        3.Class Selector
+        4.Universal Selector
+        5.Group Selector
+
+    1.Tagname Selector
+        Here we are targeting the elements by the name of the tag.
+        It targets all the elements having the same tag name.
+    
+    2.Id Selector
+        It is used to target any element individually.
+        Id value should be unique.
+        We have to use # symbol to target by id.
+    
+    3.Class Selector
+        When We want to Apply same css to more thann one element we can give same class attribute to all of them.
+        In Css we have to use '.' symbol for target the elements by the class name.
+    
+    4.Universal Selector
+        It is used to target all the elements that is return in the HTML Document.
+        In CSS We have to use '*' symbol for this.
+
+    5.Group Selector
+        It is used to target more than one elements without providing any extra attribute.
+        For this we have to use ',' symbol.
+
+Combinator Selector
+    It is the Combination of two or more than two Simple Selectors.
+
+    1.Descendent Selector:
+        <div class"header>
+            <h1> Hi</h1>
+            <div class="Section" >
+                <h1>Bye</h1>
+            </div>
+        </div>
+
+        .header h1{
+            text-align : center ;
+        }
+
+            This selector is used to target all the Descendents of a particular element.
+            It targets the child.grand-child,great-grand-child and so on.
+    
+    2.Direct Child Selector:
+        This Selector is used to target direct/immediate children of the parent element.
+        
+        Example:
+
+        .header > h1{
+            color: red ;
+        }
+        .header > .section > h1{
+            color:green ;
+        }
+
+    3.Adjacent Sibling:    
+        <ul>
+            <li id="First"> List 1</li>
+            <li> List 2</li>
+            <li> List 3</li>
+            <li> List 4</li>
+            <li> List 5</li>
+
+        </ul>
+
+        ul > #first+li{
+            color:red;
+        }
+
+            It will target the immediate next sibling element.
+            It targets only one element.
+
+    4.General Sibling
+        It will Target all the siblings after that selected element.
+        Eg:
+            ul > #first ~ li{
+                color:aqua;
+            }
+
+    5.

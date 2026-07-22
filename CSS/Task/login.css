@@ -1,0 +1,162 @@
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  min-height: 100%;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: radial-gradient(circle at top, rgba(34, 197, 94, 0.16), transparent 40%),
+    linear-gradient(180deg, #0f172a 0%, #020617 100%);
+  color: #ffffff;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.outer {
+  width: min(100%, 1080px);
+  min-height: 80vh;
+  display: flex;
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(18px);
+}
+
+.left,
+.right {
+  flex: 1;
+  min-width: 0;
+}
+
+.left {
+  padding: 56px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #111827 0%, #0f172a 100%);
+}
+
+.hero {
+  max-width: 380px;
+}
+
+.hero h1 {
+  font-size: clamp(2.2rem, 3vw, 3rem);
+  line-height: 1.04;
+  margin-bottom: 1rem;
+}
+
+.hero p {
+  color: #cbd5e1;
+  line-height: 1.8;
+}
+
+.right {
+  background: #0b1121;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px;
+}
+
+.box {
+  width: 100%;
+  max-width: 420px;
+  background: var(--surface);
+  border-radius: 28px;
+  padding: 40px 36px;
+  box-shadow: var(--shadow);
+  color: var(--text);
+}
+
+.box h2 {
+  margin-bottom: 24px;
+  font-size: 1.85rem;
+}
+
+.login-form {
+  display: grid;
+  gap: 18px;
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.input-field {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid #d1d5db;
+  border-radius: 16px;
+  background: #f8fafc;
+  color: #111827;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.16);
+}
+
+.btn-submit {
+  width: 100%;
+  padding: 16px 18px;
+  border: none;
+  border-radius: 16px;
+  background: var(--accent);
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-submit:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 18px 30px rgba(34, 197, 94, 0.22);
+}
+
+.alt-link {
+  display: inline-block;
+  margin-top: 22px;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.alt-link:hover {
+  color: #111827;
+}
+
+@media (max-width: 900px) {
+  .outer {
+    flex-direction: column;
+    min-height: auto;
+  }
+
+  .left,
+  .right {
+    width: 100%;
+  }
+
+  .left {
+    padding: 36px 28px;
+  }
+
+  .right {
+    padding: 32px 24px;
+  }
+}

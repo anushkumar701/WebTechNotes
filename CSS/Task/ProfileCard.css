@@ -1,0 +1,71 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.outer {
+  height: 100vh;
+  background-color: cadetblue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.outer > .inner {
+  width: 350px;
+  height: 500px;
+  background-color: rgba(213, 183, 130, 0.854);
+  padding: 15px 25px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 10px 15px rgb(246, 106, 13);
+}
+
+.outer > .inner > img {
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+}
+
+.outer > .inner > section {
+  /* background-color: aqua; */
+  display: flex;
+  height: 120px;
+  gap: 5px;
+  width: 100%;
+}
+.inner > section > .box {
+  /* border: 2px solid; */
+  box-shadow: 2px 3px 6px red;
+  flex-basis: 33.33%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  border-radius: 10px;
+}
+
+.inner > button {
+  width: 100%;
+  background-color: rgb(43, 243, 110);
+  padding: 10px;
+  border-radius: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1.3px;
+  border: none;
+}
+
+.inner > button:hover {
+  background-color: crimson;
+}
+
+.inner > a {
+  font-size: 19px;
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing: 1.5px;
+}

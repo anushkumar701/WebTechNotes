@@ -1,0 +1,40 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+.fixed-text {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 90px;
+  font-weight: bold;
+  letter-spacing: 10px;
+  text-shadow: 0 0 20px black;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+.bg {
+  width: 100%;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+}
+
+.bg1 {
+  background-image: url("./kratos3.png");
+}
+
+.bg2 {
+  background-image: url("./wp2514508-god-of-war-game-wallpapers.jpg");
+}

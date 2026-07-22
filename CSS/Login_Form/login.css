@@ -1,0 +1,16 @@
+label{
+    font-weight: 600;
+    font-size: 13px;
+}
+button{
+    width: 36%;
+    height: 100%;
+    margin: 10px auto; 
+    background-color: black;
+    color: white;
+}
+form{
+    margin: 100px;
+    border-color: black;
+    
+}

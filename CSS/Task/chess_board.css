@@ -1,0 +1,38 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.outer{
+    height: 100vh;
+    background-color: brown;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.inner{
+    height: 400px;
+    width: 400px;
+    background-color: yellow;
+
+}
+.b{
+    height:50px;
+    width: 50px;
+    background-color: black;
+}
+.w{
+    height:50px;
+    width: 50px;
+    background-color: white;
+}
+.row1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.row2{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

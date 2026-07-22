@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Attribute</title>
+    <style>
+      header {
+        background-color: aqua;
+        height: 200px;
+        border-radius: 70px;
+        box-shadow: 2px 2px 3px red;
+      }
+      header > h1 {
+        color: darkgoldenrod;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        text-shadow: 2px 2px 3px crimson;
+      }
+      main {
+        background-color: blue;
+        height: 350px;
+        border-radius: 70px;
+        text-align: justify;
+        box-shadow: 2px 2px 3px red;
+        margin-top: 20px;
+        padding-top: 20px;
+      }
+      main > form {
+        background-color: antiquewhite;
+        width: 300px;
+        margin: auto;
+        padding: 20px;
+        padding: 15px 20px;
+        border-radius: 25px;
+        box-shadow: 2px 2px 3px red;
+      }
+      main > form > label {
+        font-size: 15px;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+      }
+      form > input[type="password"] {
+        background-color: darkcyan;
+      }
+      form > input[type="text"] {
+        background-color: silver;
+      }
+      form > button[type="submit"] {
+        background-color: yellow;
+      }
+      form > button[type="reset"] {
+        background-color: red;
+      }
+      form > button {
+        width: 40%;
+        border-radius: 10px;
+        border: none;
+        padding: 10px 20px;
+      }
+      form > button:hover {
+        background-color: green;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Attribute Selector</h1>
+    </header>
+    <main>
+      <form action="">
+        <label for="">Name</label>
+        <input type="text" />
+        <br />
+        <br />
+        <label for="">Password</label>
+        <input type="password" />
+        <br />
+        <br />
+        <label for="">Student ID</label>
+        <input type="text" />
+        <br />
+        <br />
+        <button type="submit">Register</button>
+        <button type="reset">Reset</button>
+      </form>
+    </main>
+  </body>
+</html>

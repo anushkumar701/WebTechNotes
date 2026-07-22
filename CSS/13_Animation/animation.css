@@ -1,0 +1,122 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.outer {
+  height: 100vh;
+  background: linear-gradient(green, lightgreen, lightseagreen);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.outer > .left {
+  height: 400px;
+  width: 400px;
+  border: 3px solid white;
+}
+.outer > .right {
+  height: 400px;
+  width: 400px;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.left > .box1 {
+  height: 100px;
+  width: 100px;
+  border: 3px solid black;
+  border-radius: 50%;
+  animation: changecolor 1s ease-in infinite ;
+}
+
+.right > .box2 {
+  height: 200px;
+  width: 200px;
+  border: 4px solid green;
+  border-radius: 50%;
+  border-top: black;
+  border-bottom: black;
+  animation: spinner 1s linear infinite;
+}
+@keyframes changecolor {
+  from {
+    background-color: black;
+  }
+  to {
+    background-color: lightblue;
+  }
+}
+@keyframes spinner {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.outer1 {
+  height: 100vh;
+  background: linear-gradient(green, lightgreen, lightseagreen);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.outer1 > .left1 {
+  height: 400px;
+  width: 400px;
+  border: 3px solid white;
+  border-radius: 50%;
+  animation: spinner 10s linear infinite;
+}
+.outer1 > .right1 {
+  height: 400px;
+  width: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid yellow;
+  gap: 20px;
+}
+.left1 > .box3 {
+  height: 100px;
+  width: 100px;
+  border: 3px solid black;
+  border-radius: 50%;
+  
+}
+.ball1{
+    height: 20px;
+    width: 20px;
+    background-color: red;
+    border-radius: 50%;
+    animation: fall 2s linear  infinite ;
+}
+.ball2{
+    height: 20px;
+    width: 20px;
+    background-color: red;
+    border-radius: 50%;
+    animation: fall 2s linear 0.1s infinite ;
+}.ball3{
+    height: 20px;
+    width: 20px;
+    background-color: red;
+    border-radius: 50%;
+    animation: fall 2s linear 0.2s infinite ;
+}.ball4{
+    height: 20px;
+    width: 20px;
+    background-color: red;
+    border-radius: 50%;
+    animation: fall 2s linear 0.3s infinite ;
+    animation: name duration timing-function delay iteration-count direction fill-mode;
+}
+@keyframes fall {
+  from {
+    transform: translateY(-100px);
+  }
+  to {
+    transform: translateY(100px);
+  }

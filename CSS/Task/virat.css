@@ -1,0 +1,23 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.outer {
+  height: 100vh;
+  background-color: brown;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  overflow: auto;
+}
+.outer > img {
+  border-radius: 15px;
+  box-shadow: 2px 4px 6px green;
+  transition: all 0.5s ease-in-out;
+}
+.outer > img:hover {
+    transform: scale(1.2);
+    box-shadow: 2px 4px 6px blue;
+}

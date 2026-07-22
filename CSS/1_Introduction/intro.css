@@ -1,0 +1,13 @@
+h3 {
+  color: gold;
+  text-align: right;
+}
+h4 {
+  text-align: center;
+  text-transform: capitalize;
+  color: silver;
+}
+h5 {
+  text-align: center;
+  color: sandybrown;
+}

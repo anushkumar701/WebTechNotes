@@ -1,0 +1,337 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 120px;
+}
+
+/* CSS for nav bar */
+nav {
+  height: 100px;
+  background-color: #111;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10%;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+nav > ul {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 20px;
+  letter-spacing: 1.3px;
+}
+
+nav h1 {
+  color: #f4d72f;
+}
+
+nav li {
+  position: relative;
+}
+
+nav li::after {
+  content: "";
+  height: 5px;
+  width: 0;
+  background-color: white;
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  transition: all 1s ease-in;
+}
+nav li:hover::after{
+  width: 100%;
+}
+/* CSS for main */
+
+main {
+  min-height: 100vh;
+  background-color: #111;
+  display: grid;
+  grid-template-columns: 55% 45%;
+  padding: 80px 10%;
+}
+
+main > .left {
+  background-color: #111;
+  color: white;
+}
+
+.left > h3 {
+  font-size: 40px;
+  letter-spacing: 1.4px;
+  font-style: italic;
+  margin-bottom: 15px;
+}
+
+.left > h1 {
+  font-size: 70px;
+  margin-bottom: 15px;
+  animation: textMagic 3s steps() infinite alternate;
+  border-right: 5px solid white;
+  
+}
+
+.left > h2 {
+  font-size: 55px;
+  margin-bottom: 15px;
+}
+
+.left > p {
+  font-size: 25px;
+  text-align: justify;
+  width: 70%;
+  color: #ccc;
+  margin-bottom: 15px;
+}
+
+.left button {
+  padding: 15px 15px;
+  width: 30%;
+  border-radius: 15px;
+  border: none;
+  background-color: #444;
+  color: white;
+  font-size: 19px;
+  letter-spacing: 1.4px;
+  cursor: pointer;
+}
+
+.left span {
+  color: #f4d72f;
+}
+
+main > .right {
+  background-color: #111;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.right > img {
+  height: 500px;
+}
+
+@keyframes textMagic{
+  from{
+    width: 0ch;
+  }
+  to{
+    width: 6ch;
+  }
+}
+/* about section CSS */
+
+#about {
+  padding: 100px 10%;
+  background-color: #111;
+  color: white;
+  scroll-margin-top: 120px;
+}
+
+#about > h1 {
+  text-align: center;
+  font-size: 75px;
+  text-transform: capitalize;
+  letter-spacing: 2px;
+  margin-bottom: 15px;
+}
+
+#about > p {
+  text-align: center;
+  font-size: 23px;
+  width: 70%;
+  margin: 15px auto;
+}
+
+#about > .card {
+  background-color: #222;
+  width: 80%;
+  margin: 20px auto;
+  padding: 30px;
+  border-radius: 20px;
+  border-left: 5px solid white;
+  transition: all 0.3s ease-in;
+}
+
+#about > .card:hover {
+  transform: translateY(-5px);
+  box-shadow: 2px 4px 10px #f4d72f;
+}
+
+.card > h2 {
+  font-size: 45px;
+  text-transform: capitalize;
+  margin-bottom: 10px;
+}
+
+.card > p {
+  font-size: 19px;
+  color: #ccc;
+}
+
+/* project section style */
+
+#projects {
+  padding: 100px 10%;
+  background-color: #111;
+  color: white;
+  scroll-margin-top: 120px;
+}
+
+#projects > h1 {
+  text-align: center;
+  font-size: 75px;
+  text-transform: capitalize;
+  letter-spacing: 2px;
+  margin-bottom: 15px;
+}
+
+#projects > p {
+  text-align: center;
+  font-size: 23px;
+  width: 70%;
+  margin: 15px auto;
+}
+
+.projectcard {
+  height: 450px;
+  width: 350px;
+  background-color: #333;
+  border-radius: 20px;
+  overflow: hidden;
+  transition: all 0.4s ease-in;
+}
+
+.projectcard:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 4px 10px #f4d72f;
+}
+
+.projectcard > h3 {
+  color: #f4d72f;
+  text-transform: capitalize;
+  letter-spacing: 1.4px;
+  margin: 10px;
+}
+
+.projectcard > p {
+  margin: 10px;
+}
+
+.projectcard > img {
+  height: 50%;
+  width: 100%;
+}
+
+#projects > article {
+  margin-top: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 40px;
+}
+
+/* Contact Section CSS */
+
+#contacts {
+  padding: 100px 10%;
+  background-color: #111;
+  color: white;
+  scroll-margin-top: 120px;
+}
+
+#contacts > h1 {
+  text-align: center;
+  font-size: 75px;
+  text-transform: capitalize;
+  letter-spacing: 2px;
+  margin-bottom: 15px;
+}
+
+#contacts > p {
+  text-align: center;
+  font-size: 23px;
+  width: 70%;
+  margin: 15px auto;
+}
+
+#contacts > form {
+  background-color: #333;
+  width: 70%;
+  margin: 15px auto;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 1px 6px 15px #f4d72f;
+}
+
+form > input {
+  padding: 15px;
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  color: white;
+  background-color: #444;
+}
+
+form > textarea {
+  display: block;
+  width: 100%;
+  height: 100px;
+  padding: 15px;
+  border: 1px solid #ccc;
+  color: white;
+  background-color: #444;
+  resize: none;
+}
+
+form > button {
+  display: block;
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: none;
+  font-size: 19px;
+  font-weight: bold;
+  margin: 10px auto;
+}
+
+/* Footer Style */
+
+footer {
+  height: 80px;
+  background-color: #222;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+footer > p {
+  font-size: 19px;
+  text-transform: capitalize;
+  letter-spacing: 1.5px;
+}

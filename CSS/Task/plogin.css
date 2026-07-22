@@ -1,0 +1,21 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.outer {
+  height: 100vh;
+  display: flex;
+}
+.outer > .left {
+  flex-basis: 50%;
+  background-color: white;
+}
+.outer > .right {
+  flex-basis: 50%;
+  background-color: black;
+  border-top-left-radius: 5%;
+  color: white;
+  text-align: center;
+  padding: 10%;
+}

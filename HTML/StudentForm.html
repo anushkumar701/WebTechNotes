@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Form</title>
+    <style>
+      body {
+        color: white;
+      }
+    </style>
+  </head>
+
+  <body bgcolor="black">
+    <h1>Student Form</h1>
+
+    <form action="">
+      <fieldset>
+        <legend>Student Form</legend>
+
+        <label for="sname">Student Name</label>
+        <input
+          type="text"
+          placeholder="Enter Your Name"
+          id="sname"
+          name="sname"
+        />
+
+        <br /><br />
+
+        <label for="snum">Phone Number</label>
+        <input
+          type="tel"
+          placeholder="Enter Your Number"
+          id="snum"
+          name="snum"
+        />
+
+        <br /><br />
+
+        <label for="spass">Password</label>
+        <input
+          type="password"
+          placeholder="Enter Password"
+          id="spass"
+          name="spass"
+        />
+        <br /><br />
+        <label for="sage">Age</label>
+        <input type="number" name="sage" id="sage" />
+        <br /><br />
+        <label for="semail">Email</label>
+        <input
+          type="email"
+          name="semail"
+          id="semail"
+          value="example@gmail.com"
+        />
+        <br /><br />
+        <label for="ssubject">Subjects</label>
+        <br /><br />
+        <label for="sub1">HTML</label>
+        <input type="checkbox" name="sub1" id="sub1" value="HTML" />
+        <label for="sub2">CSS</label>
+        <input type="checkbox" name="sub2" id="sub2" value="CSS" />
+        <label for="sub3">JavaScript</label>
+        <input type="checkbox" name="sub3" id="sub3" value="JavaScript" />
+        <br /><br />
+        <label for="">Select Gender</label>
+        <br /><br />
+        <label for="male">Male</label>
+        <input type="radio" name="gender" id="male" value="male" />
+        <label for="Female">Female</label>
+        <input type="radio" name="gender" id="Female" value="Female" />
+        <label for="others">Others</label>
+        <input type="radio" name="gender" id="others" value="others" />
+        <br /><br />
+        <label for="">Address</label>
+        <textarea
+          name="saddress"
+          id="Address"
+          placeholder="Enter your Address"
+          rows="50"
+          cols="100"
+        ></textarea>
+
+        <br /><br />
+        <label for="">Select Course</label>
+        <select name="" id="">
+          <option value="javafullstack">Java Full Stack</option>
+          <option value="python full stack">Python Full Stack</option>
+        </select>
+        <br /><br />
+        <input type="submit" />
+      </fieldset>
+    </form>
+  </body>
+</html>

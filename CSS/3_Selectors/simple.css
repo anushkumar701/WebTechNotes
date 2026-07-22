@@ -1,0 +1,32 @@
+/*  1.TagName Selector  */
+
+h1{
+    color: aqua;
+    text-align: center;
+}
+
+/* This is a ID Selector */
+
+#P2{
+    font-size: larger;
+    font-weight: bold;
+}
+/* Class Selector */
+.Box{
+    background-color: brown;
+    height: 200px;
+    width:200px;
+    text-align: center;
+    border-radius: 100px;
+}
+/* Group Selector */
+*{
+    color: aqua;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Group Selector */
+#P2,h1{
+    font-size: smaller;
+}
+

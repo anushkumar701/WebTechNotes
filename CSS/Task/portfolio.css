@@ -1,0 +1,29 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.outer{
+    height: 100vh;
+    background-color: silver;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.outer > .inner{
+    height: 350px;
+    width:400px;
+    background-color: white;
+    border-radius: 20px;
+    position: relative;
+}
+.inner > img{
+    height: 100px;
+    width: 100px;
+    border-radius: 40px;
+    position: absolute;
+    margin-left: 150px;
+    transform: translateX(50);
+    top:-50px;
+    
+}
