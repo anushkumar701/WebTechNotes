@@ -1,1 +1,1 @@
-console.log("javascript file");
+console.log("javascript");
