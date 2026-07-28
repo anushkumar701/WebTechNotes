@@ -167,7 +167,7 @@ console.log(typeof height); // number
 - It is a collection of single or multiple characters that are enclosed with:
   - Single Quotes (`''`)
   - Double Quotes (`""`)
-  - Backticks (` ` ``)
+  - Backticks (`` ` ` `)
 
 ### Example
 
@@ -299,4 +299,124 @@ if (condition) {
 } else if (condition) {
 } else {
 }
+```
+
+---
+
+# Math Object
+
+- Math is a built-in object in JavaScript used to perform mathematical operations.
+
+---
+
+## Math.max()
+
+- It is used to find the maximum number.
+
+### Example
+
+```javascript
+console.log(Math.max(3, 1, 5, 2)); // 5
+```
+
+---
+
+## Math.min()
+
+- It is used to find the minimum number.
+
+### Example
+
+```javascript
+console.log(Math.min(3, 1, 5, 2)); // 1
+```
+
+---
+
+## Math.abs()
+
+- It is used to provide the positive value of a number.
+
+### Example
+
+```javascript
+console.log(Math.abs(-3)); // 3
+```
+
+---
+
+## Math.floor()
+
+- It is used to provide the floor value of a number.
+
+### Example
+
+```javascript
+console.log(Math.floor(3.9)); // 3
+```
+
+---
+
+## Math.ceil()
+
+- It is used to provide the next integer value of a number.
+
+### Example
+
+```javascript
+console.log(Math.ceil(3.1)); // 4
+```
+
+---
+
+## Math.round()
+
+- It is used to provide the rounded value of a number.
+- If the decimal value is `.5` or more, it will return the next integer.
+
+### Example
+
+```javascript
+console.log(Math.round(3.1)); // 3
+console.log(Math.round(3.5)); // 4
+```
+
+---
+
+## Math.pow()
+
+- It is used to find the power of a number.
+- It takes two parameters:
+  - Base
+  - Power
+
+### Example
+
+```javascript
+console.log(Math.pow(2, 3)); // 8
+console.log(Math.pow(5, 2)); // 25
+```
+
+---
+
+## Math.sqrt()
+
+- It is used to find the square root of a number.
+
+### Example
+
+```javascript
+console.log(Math.sqrt(16)); // 4
+```
+
+---
+
+## Math.random()
+
+- It generates a random number between `0.0` and `0.99999` (less than 1).
+
+### Example
+
+```javascript
+console.log(Math.random());
 ```
