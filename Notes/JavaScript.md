@@ -138,72 +138,165 @@ let phNo; // Redeclaration is not possible
 
 - In JavaScript, both decimal and non-decimal numbers belong to the `number` data type.
 
-### Note
+#### Note
 
 - The `typeof` operator is used to know the data type of any variable.
 
+### Syntax
+
 ```javascript
 typeof variableName;
+```
 
-Example:
-  let age =21;
-  cosole.log(age)         //21
-  console.log(typeof age) //number
+### Example
 
-  let height =5.85;
-  cosole.log(height)         //5.85
-  console.log(typeof height) //number
+```javascript
+let age = 21;
+console.log(age); // 21
+console.log(typeof age); // number
 
-2.String Datatype
+let height = 5.85;
+console.log(height); // 5.85
+console.log(typeof height); // number
+```
 
-      It is collection of single or multiple characters that is enclosed with single quote('') or double quotes (" ") or backticks (` `)
-      Eg:
-         let name ='Kratos';
-         cosole.log(name)         //21
-         console.log(typeof name) //String
+---
 
-3.Boolean DataType
+### 2. String Data Type
 
-      It can take only two values either true or false.
-      Eg:
-        let isStudent = true;
-        cosole.log(typeof isStudent) //true
+- It is a collection of single or multiple characters that are enclosed with:
+  - Single Quotes (`''`)
+  - Double Quotes (`""`)
+  - Backticks (` ` ``)
 
-4.Undefined DataType
+### Example
 
-      Any variable that is declared but not initialized, is called as undefined.
+```javascript
+let name = "Kratos";
 
-      typeof undefined is undefined.
+console.log(name); // Kratos
+console.log(typeof name); // string
+```
 
-      Example:
-       let name
-       console.log(empNo)       //Undefined
-       console.log(typeof name) //Undefined
+---
 
-5.Null DataType
-    Null is the varible that is assigned with null.
-    typeof null is object.
+### 3. Boolean Data Type
 
-    Example:
-      let num=null;
-      console.log(num);
-      console.log(typeof num)
+- It can take only two values:
+  - `true`
+  - `false`
 
-6.BigInit DataType
-  If we want to take large number in  js, we can take thing biginit datatype.
-  For declaring bigint datatype we have to use `n` as a suffix.
+### Example
 
-  Example:
-  let age =21n;
-  cosole.log(age)         //21
-  console.log(typeof age) //biginit
+```javascript
+let isStudent = true;
 
-NonPrimitive Dataatype:
-  Js having 3 non primitive datatype.
+console.log(isStudent); // true
+console.log(typeof isStudent); // boolean
+```
 
-  1.function
-  2.Array
-  3.Object
+---
 
+### 4. Undefined Data Type
 
+- Any variable that is declared but not initialized is called Undefined.
+- `typeof undefined` is `undefined`.
+
+### Example
+
+```javascript
+let name;
+
+console.log(name); // undefined
+console.log(typeof name); // undefined
+```
+
+---
+
+### 5. Null Data Type
+
+- Null is a variable that is assigned with `null`.
+- `typeof null` is `object`.
+
+### Example
+
+```javascript
+let num = null;
+
+console.log(num); // null
+console.log(typeof num); // object
+```
+
+---
+
+### 6. BigInt Data Type
+
+- If we want to take very large numbers in JavaScript, we use the BigInt data type.
+- For declaring a BigInt value, we have to use `n` as a suffix.
+
+### Example
+
+```javascript
+let age = 21n;
+
+console.log(age); // 21n
+console.log(typeof age); // bigint
+```
+
+---
+
+## Non-Primitive Data Type
+
+- JavaScript has three Non-Primitive Data Types:
+  1. Function
+  2. Array
+  3. Object
+
+---
+
+# Decision Making Statements
+
+1. If Condition
+2. If Else Condition
+3. Else If Ladder
+4. Switch
+
+---
+
+## If Condition
+
+### Syntax
+
+```javascript
+if (condition) {
+}
+```
+
+---
+
+## If Else Condition
+
+### Syntax
+
+```javascript
+if (condition) {
+} else {
+}
+```
+
+---
+
+## Else If Ladder
+
+- If we want to check more than one condition, then we should use Else If Ladder.
+- Once any one block is executed, the remaining blocks will not be checked.
+
+### Syntax
+
+```javascript
+if (condition) {
+} else if (condition) {
+} else if (condition) {
+} else {
+}
 ```
