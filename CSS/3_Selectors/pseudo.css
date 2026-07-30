@@ -1,0 +1,73 @@
+nav {
+  background-color: black;
+  color: white;
+  height: 80px;
+}
+
+nav > h2:hover {
+  color: chartreuse;
+}
+nav > #login:hover {
+  background-color: green;
+}
+nav > #logout:hover {
+  background-color: green;
+}
+nav > #logout:active {
+  background-color: red;
+}
+nav > #login:active {
+  background-color: red;
+}
+main > ul > li:nth-child(5) {
+  background-color: aqua;
+}
+main > ol > li:nth-child(2n + 1) {
+  background-color: chartreuse;
+}
+main > ol > li:nth-child(2n) {
+  background-color: gray;
+}
+main > a {
+  text-decoration: none;
+}
+main > a:visited {
+  color: violet;
+}
+main > a:link {
+  color: crimson;
+}
+section > p {
+  text-indent: 100px;
+}
+
+section > p::first-letter {
+  font-size: 50px;
+  color: brown;
+}
+section > p::first-line {
+  font-style: italic;
+}
+
+section > h1 {
+  text-align: center;
+  text-transform: capitalize;
+  letter-spacing: 1.5px;
+  text-decoration: underline;
+}
+section > h1::after {
+  content: "***";
+  color: red;
+}
+section > h1::before {
+  content: "***";
+  color: blue;
+}
+::selection {
+  background-color: green;
+  color: aqua;
+}
+
+section > ul > li::marker {
+  color: yellowgreen;
+}
