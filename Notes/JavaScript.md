@@ -417,6 +417,53 @@ console.log(Math.sqrt(16)); // 4
 
 ### Example
 
-```javascript
+javascript
 console.log(Math.random());
+
+How to generate random number b/w some range
+
+let start=10;
+let end=50;
+let randomNumber=Math.floor(Math.random() \* (end-start)+1 + start);
+
+```
+
+Function
+
+It is a block of code performing some specific task.
+Function is used for code reusability.
+
+Name fucntion 
+  function having name is called named function.
+  
+  Syntax:
+    function fucntionname(){
+
+    }
+    functionname()
+
+  for executing the function we should call the functionname.
+
+  function with parameters:
+    
+    
+    function add(a,b) {
+      console.log(a+b);
+    }
+
+add(2,8)
+
+Funciton with return Statement:
+ 
+ 
+  function sub(a,b) {
+    return a-b;
+}
+let a=sub(40,10)
+console.log(a);
+console.log(sub(100,20))
+
+
+
+
 ```
