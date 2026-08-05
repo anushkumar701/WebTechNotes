@@ -5,3 +5,4 @@ for (let i = 1; i <= p; i++) {
   mul = mul * b;
 }
 console.log(mul);
+

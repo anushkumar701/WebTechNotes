@@ -1,29 +1,46 @@
 # JavaScript
 
-JavaScript is a programming language that is used to add functionalities to web pages.
+## Introduction
 
-We can use JavaScript both on the client-side and server-side.
+- JavaScript is a programming language used to add functionality to web pages.
+- It can be used on both:
+  - Client-side
+  - Server-side
 
 ---
 
-# How Many Ways Can We Write JavaScript Code?
-
-There are two ways:
+# Ways to Write JavaScript
 
 ## 1. Internal JavaScript
 
-- Writing the JavaScript code inside the HTML file.
-- For this, we need the `<script></script>` tag.
-- It should be written inside the `<body>` tag at the end, before the `</body>` tag.
+- JavaScript code is written inside the HTML file.
+- Uses the `<script></script>` tag.
+- Place the `<script>` tag at the end of the `<body>` section.
 
-## 2. External JavaScript
+### Example
 
-- First, we have to create a separate JavaScript file using the `.js` extension.
-- In the `<script></script>` tag, we have to provide the path of the JavaScript file in the `src` attribute.
+```html
+<script>
+  console.log("Hello");
+</script>
+```
 
 ---
 
-# Printing Statement in JavaScript
+## 2. External JavaScript
+
+- Create a separate file with the `.js` extension.
+- Link it using the `src` attribute.
+
+### Example
+
+```html
+<script src="script.js"></script>
+```
+
+---
+
+# Printing Statement
 
 ```javascript
 console.log();
@@ -31,21 +48,18 @@ console.log();
 
 ---
 
-# How to Execute a JavaScript Program
+# Executing JavaScript
 
-We can execute JavaScript programs both inside and outside the browser.
+## Inside Browser
 
-## Inside the Browser
+- Create an HTML file.
+- Open it in the browser.
+- Inspect → Console tab.
 
-- For executing a JavaScript program inside the browser, we need an HTML file.
-- We have to inspect the webpage and go to the Console tab to get the output.
+## Outside Browser
 
-## Outside the Browser
-
-- For this, we have to install Node.js.
-- Node.js is a JavaScript Runtime Environment used to execute JavaScript files outside the browser.
-
-### Syntax
+- Install Node.js.
+- Execute using:
 
 ```bash
 node filename.js
@@ -55,217 +69,304 @@ node filename.js
 
 # Token
 
-A token is the basic building block or smallest unit in any programming language.
+A token is the smallest unit of a programming language.
 
-### Components of Token
+## Types of Tokens
 
-- Keyword
-- Identifier
+- Keywords
+- Identifiers
 - Literals
-- Separator
+- Separators
 - Operators
 
-## Keyword
-
-- These are predefined or reserved words having some meaning.
-- They should be written in lowercase.
-
-## Identifier
-
-- Components where we can assign names.
-- We cannot use keywords as identifiers.
-- We cannot give spaces between identifiers.
-- Special characters are not allowed (except `$` and `_`).
-- We cannot start an identifier with numbers.
-
 ---
 
-# Variable
+## Keywords
 
-- A variable is a container used to store data or values.
-- In JavaScript, we use three keywords to create variables:
-  - `var`
-  - `let`
-  - `const`
+- Predefined reserved words.
+- Must be written in lowercase.
 
----
-
-## var Keyword
+Example:
 
 ```javascript
-var sname; // Variable declaration
-
-sname = "ram"; // Variable initialization
-
-var sage = 22; // Variable declaration and initialization
-
-sage = 23; // Variable reinitialization
-
-var sname; // Variable redeclaration
+let
+var
+const
+if
+else
 ```
 
 ---
 
-## let Keyword
+## Identifiers
 
-- Redeclaration is not possible using the `let` keyword.
+Rules:
 
-### Example
+- Cannot use keywords.
+- No spaces.
+- Cannot start with numbers.
+- Special characters are not allowed except `$` and `_`.
+
+Example:
 
 ```javascript
-let phNo = 9865423456;
-
-let phNo; // Redeclaration is not possible
+let studentName;
+let $price;
+let _age;
 ```
 
 ---
 
-## const Keyword
+# Variables
 
-- To create a constant variable, we use the `const` keyword.
-- Declaration and initialization must be done in the same line.
+Variables store data.
+
+JavaScript provides:
+
+- `var`
+- `let`
+- `const`
 
 ---
 
-# Data Type
+## var
 
-- It is used to know what kind of data we want to assign to a variable.
-- In JavaScript, we have two types of data types.
+```javascript
+var sname;
 
-## Primitive Data Type
+sname = "Ram";
 
-### 1. Number
+var age = 22;
 
-- In JavaScript, both decimal and non-decimal numbers belong to the `number` data type.
+age = 23;
 
-#### Note
+var sname;
+```
 
-- The `typeof` operator is used to know the data type of any variable.
+Features:
 
-### Syntax
+- Redeclaration ✔
+- Reinitialization ✔
+
+---
+
+## let
+
+```javascript
+let phone = 9876543210;
+
+phone = 9999999999;
+```
+
+Features:
+
+- Redeclaration ✘
+- Reinitialization ✔
+
+---
+
+## const
+
+```javascript
+const pi = 3.14;
+```
+
+Features:
+
+- Redeclaration ✘
+- Reinitialization ✘
+- Must initialize during declaration.
+
+---
+
+# Difference Between var, let and const
+
+| Feature          | var             | let       | const     |
+| ---------------- | --------------- | --------- | --------- |
+| Redeclaration    | ✔               | ✘         | ✘         |
+| Reinitialization | ✔               | ✔         | ✘         |
+| Scope            | Global/Function | Block     | Block     |
+| Hoisting         | Yes (undefined) | Yes (TDZ) | Yes (TDZ) |
+
+---
+
+# Variable Hoisting
+
+- Applicable with `var`.
+- Declaration moves to the top.
+- Value becomes `undefined`.
+
+Example
+
+```javascript
+console.log(x);
+
+var x = 10;
+```
+
+Output
+
+```javascript
+undefined;
+```
+
+---
+
+# Data Types
+
+Two categories:
+
+## Primitive Data Types
+
+1. Number
+2. String
+3. Boolean
+4. Undefined
+5. Null
+6. BigInt
+
+## Non-Primitive Data Types
+
+1. Object
+2. Array
+3. Function
+
+---
+
+# typeof Operator
+
+Used to know the datatype.
+
+Syntax
 
 ```javascript
 typeof variableName;
 ```
 
-### Example
+Example
 
 ```javascript
-let age = 21;
-console.log(age); // 21
-console.log(typeof age); // number
+let age = 20;
 
-let height = 5.85;
-console.log(height); // 5.85
-console.log(typeof height); // number
+console.log(typeof age);
 ```
 
 ---
 
-### 2. String Data Type
+# Number
 
-- It is a collection of single or multiple characters that are enclosed with:
-  - Single Quotes (`''`)
-  - Double Quotes (`""`)
-  - Backticks (`` ` ` `)
+```javascript
+let age = 21;
 
-### Example
+console.log(age);
+
+console.log(typeof age);
+```
+
+---
+
+# String
+
+Strings are enclosed in:
+
+- Single quotes
+- Double quotes
+- Backticks
+
+Example
 
 ```javascript
 let name = "Kratos";
 
-console.log(name); // Kratos
-console.log(typeof name); // string
+console.log(typeof name);
 ```
 
 ---
 
-### 3. Boolean Data Type
+# Boolean
 
-- It can take only two values:
-  - `true`
-  - `false`
+Values:
 
-### Example
+- true
+- false
+
+Example
 
 ```javascript
 let isStudent = true;
 
-console.log(isStudent); // true
-console.log(typeof isStudent); // boolean
+console.log(typeof isStudent);
 ```
 
 ---
 
-### 4. Undefined Data Type
+# Undefined
 
-- Any variable that is declared but not initialized is called Undefined.
-- `typeof undefined` is `undefined`.
+Variable declared but not initialized.
 
-### Example
+Example
 
 ```javascript
 let name;
 
-console.log(name); // undefined
-console.log(typeof name); // undefined
+console.log(name);
+
+console.log(typeof name);
 ```
 
 ---
 
-### 5. Null Data Type
-
-- Null is a variable that is assigned with `null`.
-- `typeof null` is `object`.
-
-### Example
+# Null
 
 ```javascript
-let num = null;
+let value = null;
 
-console.log(num); // null
-console.log(typeof num); // object
+console.log(value);
+
+console.log(typeof value);
 ```
 
----
-
-### 6. BigInt Data Type
-
-- If we want to take very large numbers in JavaScript, we use the BigInt data type.
-- For declaring a BigInt value, we have to use `n` as a suffix.
-
-### Example
+Output
 
 ```javascript
-let age = 21n;
-
-console.log(age); // 21n
-console.log(typeof age); // bigint
+object;
 ```
 
 ---
 
-## Non-Primitive Data Type
+# BigInt
 
-- JavaScript has three Non-Primitive Data Types:
-  1. Function
-  2. Array
-  3. Object
+Large integers.
+
+Example
+
+```javascript
+let num = 12345678901234567890n;
+
+console.log(typeof num);
+```
+
+---
+
+# Undefined vs Null
+
+| Undefined                    | Null                               |
+| ---------------------------- | ---------------------------------- |
+| Declared but not initialized | Intentionally assigned empty value |
+| Type is undefined            | Type is object                     |
 
 ---
 
 # Decision Making Statements
 
-1. If Condition
-2. If Else Condition
-3. Else If Ladder
-4. Switch
+1. if
+2. if else
+3. else if ladder
+4. switch
 
 ---
 
-## If Condition
-
-### Syntax
+## if
 
 ```javascript
 if (condition) {
@@ -274,9 +375,7 @@ if (condition) {
 
 ---
 
-## If Else Condition
-
-### Syntax
+## if else
 
 ```javascript
 if (condition) {
@@ -286,16 +385,10 @@ if (condition) {
 
 ---
 
-## Else If Ladder
-
-- If we want to check more than one condition, then we should use Else If Ladder.
-- Once any one block is executed, the remaining blocks will not be checked.
-
-### Syntax
+## else if Ladder
 
 ```javascript
 if (condition) {
-} else if (condition) {
 } else if (condition) {
 } else {
 }
@@ -305,165 +398,367 @@ if (condition) {
 
 # Math Object
 
-- Math is a built-in object in JavaScript used to perform mathematical operations.
+Built-in object for mathematical operations.
 
 ---
 
 ## Math.max()
 
-- It is used to find the maximum number.
-
-### Example
-
 ```javascript
-console.log(Math.max(3, 1, 5, 2)); // 5
+console.log(Math.max(3, 1, 5, 2));
 ```
 
 ---
 
 ## Math.min()
 
-- It is used to find the minimum number.
-
-### Example
-
 ```javascript
-console.log(Math.min(3, 1, 5, 2)); // 1
+console.log(Math.min(3, 1, 5, 2));
 ```
 
 ---
 
 ## Math.abs()
 
-- It is used to provide the positive value of a number.
-
-### Example
-
 ```javascript
-console.log(Math.abs(-3)); // 3
+console.log(Math.abs(-3));
 ```
 
 ---
 
 ## Math.floor()
 
-- It is used to provide the floor value of a number.
-
-### Example
-
 ```javascript
-console.log(Math.floor(3.9)); // 3
+console.log(Math.floor(3.9));
 ```
 
 ---
 
 ## Math.ceil()
 
-- It is used to provide the next integer value of a number.
-
-### Example
-
 ```javascript
-console.log(Math.ceil(3.1)); // 4
+console.log(Math.ceil(3.1));
 ```
 
 ---
 
 ## Math.round()
 
-- It is used to provide the rounded value of a number.
-- If the decimal value is `.5` or more, it will return the next integer.
-
-### Example
-
 ```javascript
-console.log(Math.round(3.1)); // 3
-console.log(Math.round(3.5)); // 4
+console.log(Math.round(3.5));
 ```
 
 ---
 
 ## Math.pow()
 
-- It is used to find the power of a number.
-- It takes two parameters:
-  - Base
-  - Power
-
-### Example
-
 ```javascript
-console.log(Math.pow(2, 3)); // 8
-console.log(Math.pow(5, 2)); // 25
+console.log(Math.pow(2, 3));
 ```
 
 ---
 
 ## Math.sqrt()
 
-- It is used to find the square root of a number.
-
-### Example
-
 ```javascript
-console.log(Math.sqrt(16)); // 4
+console.log(Math.sqrt(16));
 ```
 
 ---
 
 ## Math.random()
 
-- It generates a random number between `0.0` and `0.99999` (less than 1).
-
-### Example
-
-javascript
+```javascript
 console.log(Math.random());
-
-How to generate random number b/w some range
-
-let start=10;
-let end=50;
-let randomNumber=Math.floor(Math.random() \* (end-start)+1 + start);
-
 ```
 
-Function
+Random number in a range:
 
-It is a block of code performing some specific task.
-Function is used for code reusability.
+```javascript
+let start = 10;
+let end = 50;
 
-Name fucntion 
-  function having name is called named function.
-  
-  Syntax:
-    function fucntionname(){
+let randomNumber = Math.floor(Math.random() * (end - start + 1)) + start;
+```
 
-    }
-    functionname()
+---
 
-  for executing the function we should call the functionname.
+# Functions
 
-  function with parameters:
-    
-    
-    function add(a,b) {
-      console.log(a+b);
-    }
+A function is a block of code used to perform a specific task.
 
-add(2,8)
+---
 
-Funciton with return Statement:
- 
- 
-  function sub(a,b) {
-    return a-b;
+## Named Function
+
+```javascript
+function add() {}
+
+add();
+```
+
+---
+
+## Function with Parameters
+
+```javascript
+function add(a, b) {
+  console.log(a + b);
 }
-let a=sub(40,10)
-console.log(a);
-console.log(sub(100,20))
 
-
-
-
+add(2, 8);
 ```
+
+---
+
+## Function with Return
+
+```javascript
+function sub(a, b) {
+  return a - b;
+}
+
+let result = sub(40, 10);
+
+console.log(result);
+```
+
+---
+
+## Anonymous Function
+
+```javascript
+function(){
+
+}
+```
+
+Cannot be called directly because it has no name.
+
+---
+
+## Function Expression
+
+```javascript
+let add = function () {
+  console.log(10 + 5);
+};
+
+add();
+```
+
+---
+
+## Arrow Function
+
+```javascript
+let add = () => {};
+```
+
+Single return statement:
+
+```javascript
+let add = (a, b) => a + b;
+
+console.log(add(2, 8));
+```
+
+---
+
+# Nested Function
+
+Creating one function inside another function is called a Nested Function.
+
+Example
+
+```javascript
+let outer = () => {
+  console.log("I am outer function");
+
+  let inner = () => {
+    console.log("I am inner function");
+  };
+
+  inner();
+};
+
+outer();
+```
+
+---
+
+# Lexical Scoping
+
+- In a nested function, the inner function can access the variables of the outer function.
+- The outer function cannot access the variables of the inner function.
+
+Example
+
+```javascript
+function outer() {
+  let a = 10;
+
+  function inner() {
+    console.log(a);
+  }
+
+  inner();
+}
+
+outer();
+```
+
+---
+
+# Higher Order Function
+
+A function that accepts another function as an argument is called a Higher Order Function.
+
+Example
+
+```javascript
+function display(fun) {
+  fun();
+}
+
+function hello() {
+  console.log("Hello");
+}
+
+display(hello);
+```
+
+---
+
+# Callback Function
+
+A function passed as an argument to another function is called a Callback Function.
+
+Example
+
+```javascript
+function display(fun) {
+  fun();
+}
+
+function hello() {
+  console.log("Hello");
+}
+
+display(hello);
+```
+
+Here `hello()` is the callback function.
+
+---
+
+# Armstrong Number Program
+
+```javascript
+let num = 153;
+
+let temp = num;
+
+let sum = 0;
+
+while (temp > 0) {
+  let rem = temp % 10;
+
+  sum = sum + rem ** 3;
+
+  temp = Math.floor(temp / 10);
+}
+
+if (sum == num) {
+  console.log("Armstrong Number");
+} else {
+  console.log("Not an Armstrong Number");
+}
+```
+
+---
+
+# IIFE (Immediately Invoked Function Expression)
+
+- Executes immediately after creation.
+- Executes only once.
+
+Example 1
+
+```javascript
+(function () {
+  console.log("Database Connected");
+})();
+```
+
+Example 2
+
+```javascript
+(function (port) {
+  console.log("Server running on port", port);
+})(3000);
+```
+
+---
+
+# Important Interview Questions
+
+1. Difference between `var`, `let`, and `const`
+2. Difference between `undefined` and `null`
+3. How to know the datatype (`typeof`)
+4. What is Lexical Scoping?
+5. What is a Higher Order Function?
+6. What is a Callback Function?
+7. What is IIFE?
+
+String
+String is single or collection of characters eclosed with the single quote / backticks.
+
+Note
+if we want to take multi line string then we can enclose the string by using backtick.
+
+String Interpolation / Template Literals
+Accessing the varible inside string is called as template literals.
+For this string should be enlcosed with backtick and the varible we want to access should be written inside $()
+
+Length Property
+It is used to know the length of any string.
+
+```js
+let msg = "how are you";
+console.log(msg.length); //11
+```
+
+String Methods
+1.toUppercase()
+this method is used to convert the string into uppercase and it will return one new string
+it will not change the original string
+
+2.toLowercase()
+this method is used to convert the string into lowercase and it will return one new string
+it will not change the original string
+
+3.trim()
+This method is used to remove space from both sides of string.
+
+
+4.indexof
+  it is used to know the index of the given character
+  it will take the first occurance of the character
+  if the character is not present ,it will return -1
+
+5.lastIndexof
+  it will take the last occurance of the character
+  if the character is not present ,it will return -1
+
+6.charAt()
+  This method is used to know which character is present at the given index.
+
+7.concat()
+  this method is used to combine or merge two or more than two string.
+  it will return one new string
+
+8.includes
+It is used to know the given string is present or not
+if it is present it will return true otherwise it will return false
+
