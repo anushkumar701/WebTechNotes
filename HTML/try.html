@@ -1,0 +1,1840 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Anush Kumar K — Java Full Stack Developer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      @property --angle {
+        syntax: "<angle>";
+        inherits: false;
+        initial-value: 0deg;
+      }
+
+      :root {
+        --ink: #0b1220;
+        --panel: #121a2c;
+        --panel-2: #0f1729;
+        --border: #233151;
+        --fog: #cbd5e6;
+        --fog-dim: #7f8caa;
+        --amber: #e3a857;
+        --teal: #5fc9bf;
+        --green: #6fcf97;
+        --rose: #e2685e;
+        --radius: 10px;
+        --maxw: 1040px;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        background: var(--ink);
+        color: var(--fog);
+        font-family: "Inter", sans-serif;
+        line-height: 1.6;
+        overflow-x: hidden;
+        background-image: radial-gradient(
+          circle at 1px 1px,
+          rgba(255, 255, 255, 0.035) 1px,
+          transparent 0
+        );
+        background-size: 28px 28px;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      ::selection {
+        background: var(--amber);
+        color: var(--ink);
+      }
+      .wrap {
+        max-width: var(--maxw);
+        margin: 0 auto;
+        padding: 0 28px;
+      }
+
+      .eyebrow {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 13px;
+        color: var(--teal);
+        letter-spacing: 0.02em;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 14px;
+      }
+      .eyebrow::before {
+        content: "//";
+        color: var(--fog-dim);
+      }
+      .section-title {
+        font-family: "Space Grotesk", sans-serif;
+        font-weight: 600;
+        font-size: clamp(26px, 3.4vw, 36px);
+        color: #f3f6fc;
+        margin-bottom: 28px;
+      }
+
+      /* ---------- PRELOADER ---------- */
+      #preloader {
+        position: fixed;
+        inset: 0;
+        z-index: 1000;
+        background: var(--ink);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition:
+          opacity 0.6s ease,
+          visibility 0.6s ease;
+      }
+      #preloader.hide {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
+      .preload-box {
+        width: min(420px, 86vw);
+        font-family: "JetBrains Mono", monospace;
+        font-size: 13px;
+        color: var(--fog-dim);
+      }
+      .preload-line {
+        margin-bottom: 9px;
+        opacity: 0;
+        transform: translateY(6px);
+        transition:
+          opacity 0.3s ease,
+          transform 0.3s ease;
+      }
+      .preload-line.show {
+        opacity: 1;
+        transform: none;
+      }
+      .preload-line .ok {
+        color: var(--green);
+        margin-right: 8px;
+      }
+      .preload-bar-track {
+        margin-top: 18px;
+        height: 3px;
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        overflow: hidden;
+      }
+      .preload-bar-fill {
+        height: 100%;
+        width: 0%;
+        background: linear-gradient(90deg, var(--teal), var(--amber));
+        transition: width 0.12s linear;
+      }
+      .preload-pct {
+        margin-top: 8px;
+        text-align: right;
+        color: var(--fog-dim);
+      }
+
+      /* ---------- CUSTOM CURSOR ---------- */
+      .cursor-dot,
+      .cursor-ring {
+        position: fixed;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        border-radius: 50%;
+        z-index: 999;
+        transform: translate(-50%, -50%);
+      }
+      .cursor-dot {
+        width: 6px;
+        height: 6px;
+        background: var(--amber);
+      }
+      .cursor-ring {
+        width: 34px;
+        height: 34px;
+        border: 1px solid var(--teal);
+        opacity: 0.6;
+        transition:
+          width 0.2s ease,
+          height 0.2s ease,
+          opacity 0.2s ease,
+          border-color 0.2s ease;
+      }
+      .cursor-ring.hovered {
+        width: 54px;
+        height: 54px;
+        border-color: var(--amber);
+        opacity: 0.9;
+      }
+      body.custom-cursor,
+      body.custom-cursor a,
+      body.custom-cursor button {
+        cursor: none;
+      }
+
+      /* ---------- GIT SCROLL RAIL ---------- */
+      .git-rail {
+        position: fixed;
+        left: 26px;
+        top: 0;
+        height: 100vh;
+        width: 20px;
+        z-index: 90;
+        display: flex;
+        justify-content: center;
+      }
+      .git-rail-track {
+        position: relative;
+        width: 2px;
+        height: 100%;
+        background: var(--border);
+      }
+      .git-rail-fill {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 0%;
+        background: linear-gradient(180deg, var(--teal), var(--amber));
+      }
+      .rail-node {
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 11px;
+        height: 11px;
+        border-radius: 50%;
+        background: var(--panel-2);
+        border: 2px solid var(--border);
+        transition:
+          border-color 0.3s ease,
+          background 0.3s ease,
+          box-shadow 0.3s ease;
+      }
+      .rail-node.active {
+        border-color: var(--amber);
+        background: var(--amber);
+        box-shadow: 0 0 10px var(--amber);
+      }
+      .rail-node::after {
+        content: attr(data-label);
+        position: absolute;
+        left: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        color: var(--fog-dim);
+        white-space: nowrap;
+        opacity: 0;
+        transition: opacity 0.2s ease;
+      }
+      .rail-node:hover::after {
+        opacity: 1;
+      }
+      @media (max-width: 900px) {
+        .git-rail {
+          display: none;
+        }
+      }
+
+      /* ---------- NAV ---------- */
+      .topbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        background: rgba(11, 18, 32, 0.82);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--border);
+      }
+      .topbar .wrap {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 60px;
+      }
+      .brand {
+        font-family: "JetBrains Mono", monospace;
+        font-weight: 600;
+        font-size: 15px;
+        color: #f3f6fc;
+        display: flex;
+        align-items: center;
+        gap: 9px;
+      }
+      .brand .pulse-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--green);
+        box-shadow: 0 0 8px var(--green);
+        animation: pulse 2s infinite ease-in-out;
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 0.5;
+          transform: scale(0.8);
+        }
+      }
+      .navlinks {
+        position: relative;
+        display: flex;
+        gap: 2px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 13px;
+        overflow-x: auto;
+      }
+      .nav-pill {
+        position: absolute;
+        top: 4px;
+        bottom: 4px;
+        left: 0;
+        width: 0;
+        border-radius: 6px;
+        background: rgba(227, 168, 87, 0.12);
+        border: 1px solid rgba(227, 168, 87, 0.4);
+        transition:
+          left 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+          width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 0;
+      }
+      .navlinks a {
+        position: relative;
+        z-index: 1;
+        padding: 8px 14px;
+        color: var(--fog-dim);
+        white-space: nowrap;
+        border-radius: 6px;
+        transition: color 0.2s ease;
+      }
+      .navlinks a:hover {
+        color: var(--fog);
+      }
+      .navlinks a.active {
+        color: var(--amber);
+      }
+      a:focus-visible,
+      button:focus-visible {
+        outline: 2px solid var(--teal);
+        outline-offset: 2px;
+      }
+
+      /* ---------- HERO ---------- */
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding-top: 100px;
+        padding-bottom: 60px;
+        position: relative;
+        overflow: hidden;
+      }
+      #hero3d {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        display: block;
+      }
+      .hero-inner-grid {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        grid-template-columns: 1.15fr 1fr;
+        gap: 50px;
+        align-items: center;
+      }
+      .hero-kicker {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 14px;
+        color: var(--fog-dim);
+      }
+      .hero-kicker .dot {
+        color: var(--green);
+      }
+      .hero-headline {
+        font-family: "Space Grotesk", sans-serif;
+        font-weight: 700;
+        font-size: clamp(38px, 5.2vw, 60px);
+        color: #f3f6fc;
+        line-height: 1.08;
+        margin: 16px 0 12px;
+      }
+      .hero-headline .char {
+        display: inline-block;
+        opacity: 0;
+        transform: translateY(30px);
+        transition:
+          opacity 0.55s cubic-bezier(0.2, 0.8, 0.2, 1),
+          transform 0.55s cubic-bezier(0.2, 0.8, 0.2, 1);
+      }
+      .hero-headline.show .char {
+        opacity: 1;
+        transform: none;
+      }
+      .hero-role {
+        font-family: "JetBrains Mono", monospace;
+        color: var(--teal);
+        font-size: 15px;
+        letter-spacing: 0.03em;
+        margin-bottom: 18px;
+        opacity: 0;
+        transform: translateY(14px);
+        transition:
+          opacity 0.6s ease,
+          transform 0.6s ease;
+      }
+      .hero-sub {
+        color: var(--fog-dim);
+        max-width: 46ch;
+        margin-bottom: 32px;
+        opacity: 0;
+        transform: translateY(14px);
+        transition:
+          opacity 0.6s ease,
+          transform 0.6s ease;
+      }
+      .hero-ctas {
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+        opacity: 0;
+        transform: translateY(14px);
+        transition:
+          opacity 0.6s ease,
+          transform 0.6s ease;
+      }
+      .hero-role.show,
+      .hero-sub.show,
+      .hero-ctas.show {
+        opacity: 1;
+        transform: none;
+      }
+
+      .hero-visual {
+        position: relative;
+      }
+      .terminal {
+        position: relative;
+        z-index: 1;
+        opacity: 0;
+        transform: translateY(20px) scale(0.98);
+        transition:
+          opacity 0.7s ease,
+          transform 0.7s ease;
+        background: rgba(18, 26, 44, 0.5);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: var(--radius);
+        box-shadow: 0 30px 80px -30px rgba(0, 0, 0, 0.7);
+        max-width: 640px;
+        overflow: hidden;
+        transform-style: preserve-3d;
+        will-change: transform;
+      }
+      .terminal.show {
+        opacity: 1;
+        transform: none;
+      }
+      .terminal::before {
+        content: "";
+        position: absolute;
+        inset: -1px;
+        border-radius: calc(var(--radius) + 1px);
+        background: conic-gradient(
+          from var(--angle, 0deg),
+          transparent 0 70%,
+          var(--teal) 85%,
+          var(--amber) 92%,
+          transparent 100%
+        );
+        z-index: -1;
+        opacity: 0.45;
+        animation: rotate-border 6s linear infinite;
+      }
+      @keyframes rotate-border {
+        to {
+          --angle: 360deg;
+        }
+      }
+
+      .terminal-titlebar {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 16px;
+        background: rgba(15, 23, 41, 0.55);
+        border-bottom: 1px solid var(--border);
+      }
+      .dot {
+        width: 11px;
+        height: 11px;
+        border-radius: 50%;
+        display: inline-block;
+      }
+      .dot-red {
+        background: #e2685e;
+      }
+      .dot-amber {
+        background: #e3a857;
+      }
+      .dot-green {
+        background: #6fcf97;
+      }
+      .terminal-title {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 12px;
+        color: var(--fog-dim);
+        margin-left: 6px;
+      }
+      .terminal-body {
+        padding: 24px 22px 28px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 14.5px;
+      }
+      .term-row {
+        margin-bottom: 6px;
+        color: var(--fog);
+      }
+      .term-row .prompt {
+        color: var(--green);
+        margin-right: 6px;
+      }
+      .term-row .path {
+        color: var(--teal);
+        margin-right: 6px;
+      }
+      .term-row .cmd {
+        color: #f3f6fc;
+      }
+      .term-out {
+        color: var(--fog-dim);
+        margin: 2px 0 18px 0;
+        min-height: 1.4em;
+      }
+      #typeName {
+        color: var(--amber);
+        font-weight: 600;
+        font-size: 16px;
+      }
+      #typeSummary {
+        color: var(--teal);
+      }
+      .cursor {
+        display: inline-block;
+        color: var(--teal);
+        animation: blink 1s step-end infinite;
+        opacity: 0;
+      }
+      .cursor.show-cursor {
+        opacity: 1;
+      }
+      @keyframes blink {
+        50% {
+          opacity: 0;
+        }
+      }
+
+      .scroll-cue {
+        position: absolute;
+        bottom: 26px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 9px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        color: var(--fog-dim);
+        z-index: 1;
+        opacity: 0.85;
+      }
+      .scroll-cue .chev {
+        width: 16px;
+        height: 16px;
+        border-right: 2px solid var(--teal);
+        border-bottom: 2px solid var(--teal);
+        transform: rotate(45deg);
+        animation: cuebounce 1.8s infinite;
+      }
+      @keyframes cuebounce {
+        0%,
+        100% {
+          transform: rotate(45deg) translate(0, 0);
+        }
+        50% {
+          transform: rotate(45deg) translate(4px, 4px);
+        }
+      }
+
+      .btn {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 13.5px;
+        padding: 12px 20px;
+        border-radius: 8px;
+        border: 1px solid var(--border);
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        transition:
+          box-shadow 0.2s ease,
+          border-color 0.2s ease,
+          color 0.2s ease;
+      }
+      .btn-primary {
+        background: var(--amber);
+        color: var(--ink);
+        border-color: var(--amber);
+        font-weight: 600;
+      }
+      .btn-primary:hover {
+        box-shadow: 0 12px 24px -10px rgba(227, 168, 87, 0.5);
+      }
+      .btn-ghost {
+        color: var(--fog);
+        background: transparent;
+      }
+      .btn-ghost:hover {
+        border-color: var(--teal);
+        color: var(--teal);
+      }
+
+      /* ---------- REVEAL ---------- */
+      .reveal {
+        opacity: 0;
+        transform: translateY(24px);
+        transition:
+          opacity 0.7s ease,
+          transform 0.7s ease;
+      }
+      .reveal.in-view {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      section {
+        padding: 110px 0;
+        border-top: 1px solid var(--border);
+      }
+
+      /* ABOUT */
+      .about-grid {
+        display: grid;
+        grid-template-columns: 1.3fr 1fr;
+        gap: 56px;
+        align-items: start;
+      }
+      .about-text p {
+        color: var(--fog);
+        font-size: 16.5px;
+        max-width: 52ch;
+      }
+      .about-text p + p {
+        margin-top: 16px;
+      }
+      .facts {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        font-family: "JetBrains Mono", monospace;
+        font-size: 13.5px;
+        overflow: hidden;
+      }
+      .facts .facts-head {
+        padding: 12px 16px;
+        background: var(--panel-2);
+        color: var(--fog-dim);
+        border-bottom: 1px solid var(--border);
+      }
+      .facts dl {
+        padding: 16px;
+      }
+      .facts .row {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 9px 0;
+        border-bottom: 1px dashed var(--border);
+      }
+      .facts .row:last-child {
+        border-bottom: none;
+      }
+      .facts dt {
+        color: var(--fog-dim);
+      }
+      .facts dd {
+        color: var(--teal);
+        text-align: right;
+      }
+
+      /* SKILLS */
+      .gradle-card {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        overflow: hidden;
+        max-width: 640px;
+      }
+      .gradle-head {
+        padding: 12px 16px;
+        background: var(--panel-2);
+        border-bottom: 1px solid var(--border);
+        font-family: "JetBrains Mono", monospace;
+        font-size: 12.5px;
+        color: var(--fog-dim);
+      }
+      .gradle-body {
+        padding: 22px 24px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 14.5px;
+      }
+      .gradle-body .brace {
+        color: var(--fog-dim);
+      }
+      .gradle-body .kw {
+        color: var(--rose);
+      }
+      .gradle-line {
+        padding: 5px 0 5px 22px;
+        color: var(--fog);
+        opacity: 0;
+        transform: translateX(-14px);
+        transition:
+          opacity 0.4s ease,
+          transform 0.4s ease;
+      }
+      .gradle-line.show {
+        opacity: 1;
+        transform: none;
+      }
+      .gradle-line .impl {
+        color: var(--teal);
+      }
+      .gradle-line .lib {
+        color: var(--amber);
+      }
+      .gradle-line .cmt {
+        color: var(--fog-dim);
+      }
+      .gradle-check {
+        color: var(--green);
+        margin-left: 8px;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+      .gradle-check.show {
+        opacity: 1;
+      }
+
+      /* PROJECTS */
+      .projects-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 26px;
+      }
+      .repo-card {
+        position: relative;
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        transition:
+          border-color 0.25s ease,
+          box-shadow 0.25s ease;
+        transform-style: preserve-3d;
+        will-change: transform;
+      }
+      .repo-card:hover {
+        border-color: var(--teal);
+        box-shadow: 0 26px 50px -24px rgba(0, 0, 0, 0.55);
+      }
+      .repo-shine {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          115deg,
+          transparent 40%,
+          rgba(255, 255, 255, 0.06) 50%,
+          transparent 60%
+        );
+        transform: translateX(-120%);
+        pointer-events: none;
+      }
+      .repo-card:hover .repo-shine {
+        transition: transform 0.8s ease;
+        transform: translateX(120%);
+      }
+      .repo-head {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        padding: 12px 16px;
+        background: var(--panel-2);
+        border-bottom: 1px solid var(--border);
+      }
+      .repo-name {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 12.5px;
+        color: var(--fog-dim);
+        margin-left: 4px;
+      }
+      .repo-body {
+        padding: 22px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+      .repo-title {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 19px;
+        font-weight: 600;
+        color: #f3f6fc;
+        margin-bottom: 10px;
+      }
+      .repo-desc {
+        color: var(--fog-dim);
+        font-size: 14.5px;
+        margin-bottom: 18px;
+        flex: 1;
+      }
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 20px;
+      }
+      .tag {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11.5px;
+        padding: 4px 10px;
+        border-radius: 20px;
+        border: 1px solid var(--border);
+        color: var(--teal);
+        background: rgba(95, 201, 191, 0.06);
+      }
+      .repo-footer {
+        display: flex;
+        gap: 10px;
+      }
+      .repo-footer .btn {
+        padding: 9px 16px;
+        font-size: 12.5px;
+      }
+
+      /* CONTACT */
+      .contact-term {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        max-width: 640px;
+        overflow: hidden;
+      }
+      .contact-rows {
+        padding: 22px 24px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 14.5px;
+      }
+      .contact-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 0;
+        border-bottom: 1px dashed var(--border);
+        transition: transform 0.18s ease;
+      }
+      .contact-row:last-child {
+        border-bottom: none;
+      }
+      .contact-row .prompt2 {
+        color: var(--green);
+      }
+      .contact-row a {
+        color: var(--fog);
+        transition: color 0.18s ease;
+      }
+      .contact-row a:hover {
+        color: var(--amber);
+      }
+      .contact-row:hover {
+        transform: translateX(4px);
+      }
+      .copy-btn {
+        margin-left: auto;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        color: var(--fog-dim);
+        background: transparent;
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        padding: 4px 9px;
+        cursor: pointer;
+        transition:
+          color 0.18s ease,
+          border-color 0.18s ease;
+      }
+      .copy-btn:hover {
+        color: var(--teal);
+        border-color: var(--teal);
+      }
+      .copy-btn.copied {
+        color: var(--green);
+        border-color: var(--green);
+      }
+
+      footer {
+        padding: 40px 0 60px;
+        text-align: center;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 12.5px;
+        color: var(--fog-dim);
+      }
+      footer .blink {
+        animation: blink 1.1s step-end infinite;
+        color: var(--teal);
+      }
+
+      @media (max-width: 900px) {
+        .hero-inner-grid {
+          grid-template-columns: 1fr;
+        }
+        .hero-visual {
+          order: -1;
+        }
+      }
+      @media (max-width: 760px) {
+        .about-grid {
+          grid-template-columns: 1fr;
+        }
+        .projects-grid {
+          grid-template-columns: 1fr;
+        }
+        section {
+          padding: 80px 0;
+        }
+        .navlinks a {
+          padding: 8px 10px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          animation: none !important;
+          transition: none !important;
+        }
+        .reveal {
+          opacity: 1;
+          transform: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="preloader">
+      <div class="preload-box">
+        <div class="preload-line" data-d="0">
+          <span class="ok">✓</span>initializing environment
+        </div>
+        <div class="preload-line" data-d="1">
+          <span class="ok">✓</span>loading profile: anush-kumar-k
+        </div>
+        <div class="preload-line" data-d="2">
+          <span class="ok">✓</span>warming up webgl renderer
+        </div>
+        <div class="preload-bar-track">
+          <div class="preload-bar-fill" id="preloadBar"></div>
+        </div>
+        <div class="preload-pct" id="preloadPct">0%</div>
+      </div>
+    </div>
+
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
+    <div class="git-rail" id="gitRail">
+      <div class="git-rail-track">
+        <div class="git-rail-fill" id="railFill"></div>
+        <a
+          href="#home"
+          class="rail-node"
+          data-target="home"
+          data-label="home"
+        ></a>
+        <a
+          href="#about"
+          class="rail-node"
+          data-target="about"
+          data-label="about"
+        ></a>
+        <a
+          href="#skills"
+          class="rail-node"
+          data-target="skills"
+          data-label="skills"
+        ></a>
+        <a
+          href="#projects"
+          class="rail-node"
+          data-target="projects"
+          data-label="work"
+        ></a>
+        <a
+          href="#contact"
+          class="rail-node"
+          data-target="contact"
+          data-label="contact"
+        ></a>
+      </div>
+    </div>
+
+    <nav class="topbar">
+      <div class="wrap">
+        <div class="brand">
+          <span class="pulse-dot"></span> anush<span
+            style="color: var(--fog-dim)"
+            >.dev</span
+          >
+        </div>
+        <div class="navlinks" id="navlinks">
+          <span class="nav-pill" id="navPill"></span>
+          <a href="#home" class="nav-link active">~/home</a>
+          <a href="#about" class="nav-link">~/about</a>
+          <a href="#skills" class="nav-link">~/skills</a>
+          <a href="#projects" class="nav-link">~/projects</a>
+          <a href="#contact" class="nav-link">~/contact</a>
+        </div>
+      </div>
+    </nav>
+
+    <section class="hero" id="home">
+      <canvas id="hero3d"></canvas>
+      <div class="wrap hero-inner-grid">
+        <div class="hero-left">
+          <div class="hero-kicker">
+            <span class="dot">●</span> open to opportunities
+          </div>
+          <h1 class="hero-headline" id="heroHeadline">
+            Building full&#8209;stack products, end to end.
+          </h1>
+          <div class="hero-role" id="heroRole">
+            Anush Kumar K &nbsp;·&nbsp; Java Full Stack Developer
+          </div>
+          <p class="hero-sub" id="heroSub">
+            Backend to browser: Java, Spring Boot and clean data models — with
+            Kotlin and Android on the side.
+          </p>
+          <div class="hero-ctas" id="heroCtas">
+            <a href="#projects" class="btn btn-primary">View Projects →</a>
+            <a href="#contact" class="btn btn-ghost">Get in Touch</a>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="terminal" id="heroTerminal">
+            <div class="terminal-titlebar">
+              <span class="dot dot-red"></span
+              ><span class="dot dot-amber"></span
+              ><span class="dot dot-green"></span>
+              <span class="terminal-title">anush@dev:~</span>
+            </div>
+            <div class="terminal-body">
+              <p class="term-row">
+                <span class="prompt">➜</span><span class="path">~</span
+                ><span class="cmd">whoami</span>
+              </p>
+              <p class="term-out" id="typeName"></p>
+              <p class="term-row">
+                <span class="prompt">➜</span><span class="path">~</span
+                ><span class="cmd">ls ./projects</span>
+              </p>
+              <p class="term-out" id="typeSummary"></p>
+              <p class="term-row">
+                <span class="prompt">➜</span><span class="path">~</span
+                ><span class="cursor" id="finalCursor">▍</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="scroll-cue">
+        <span>scroll</span><span class="chev"></span>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="wrap">
+        <div class="eyebrow">about</div>
+        <h2 class="section-title reveal">Who I am</h2>
+        <div class="about-grid">
+          <div class="about-text reveal">
+            <p>
+              I'm a Java Full Stack Developer who enjoys building complete,
+              working products rather than just parts of them — from backend
+              logic and databases to the interfaces people actually click on.
+            </p>
+            <p>
+              Alongside web development, I've been exploring Android development
+              with Kotlin, building small utility apps that solve real, everyday
+              annoyances — like Bluetooth staying on all night.
+            </p>
+          </div>
+          <div class="facts reveal">
+            <div class="facts-head">profile.json</div>
+            <dl>
+              <div class="row">
+                <dt>role</dt>
+                <dd>Full Stack Developer</dd>
+              </div>
+              <div class="row">
+                <dt>core</dt>
+                <dd>Java · Spring Boot</dd>
+              </div>
+              <div class="row">
+                <dt>also</dt>
+                <dd>Kotlin · Android</dd>
+              </div>
+              <div class="row">
+                <dt>status</dt>
+                <dd>open_to_work: true</dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="wrap">
+        <div class="eyebrow">skills</div>
+        <h2 class="section-title reveal">Stack &amp; tools</h2>
+        <div class="gradle-card reveal" id="gradleCard">
+          <div class="gradle-head">build.gradle</div>
+          <div class="gradle-body">
+            <div>
+              <span class="kw">dependencies</span> <span class="brace">{</span>
+            </div>
+            <div class="gradle-line">
+              <span class="impl">implementation</span>
+              <span class="lib">'Java'</span><span class="gradle-check">✓</span>
+            </div>
+            <div class="gradle-line">
+              <span class="impl">implementation</span>
+              <span class="lib">'Spring Boot'</span
+              ><span class="gradle-check">✓</span>
+            </div>
+            <div class="gradle-line">
+              <span class="impl">implementation</span>
+              <span class="lib">'HTML · CSS · JavaScript'</span
+              ><span class="gradle-check">✓</span>
+            </div>
+            <div class="gradle-line">
+              <span class="impl">implementation</span>
+              <span class="lib">'MySQL'</span
+              ><span class="gradle-check">✓</span>
+            </div>
+            <div class="gradle-line">
+              <span class="impl">implementation</span>
+              <span class="lib">'REST APIs'</span
+              ><span class="gradle-check">✓</span>
+            </div>
+            <div class="gradle-line">
+              <span class="impl">implementation</span>
+              <span class="lib">'Kotlin'</span>
+              <span class="cmt">// Android</span
+              ><span class="gradle-check">✓</span>
+            </div>
+            <div class="gradle-line">
+              <span class="impl">implementation</span>
+              <span class="lib">'Git &amp; GitHub'</span
+              ><span class="gradle-check">✓</span>
+            </div>
+            <div><span class="brace">}</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="wrap">
+        <div class="eyebrow">projects</div>
+        <h2 class="section-title reveal">Things I've built</h2>
+        <div class="projects-grid">
+          <div class="repo-card reveal">
+            <div class="repo-shine"></div>
+            <div class="repo-head">
+              <span class="dot dot-red"></span
+              ><span class="dot dot-amber"></span
+              ><span class="dot dot-green"></span>
+              <span class="repo-name">mutual-fund-screener.js</span>
+            </div>
+            <div class="repo-body">
+              <div class="repo-title">Mutual Fund Screener</div>
+              <p class="repo-desc">
+                A web tool that screens and compares mutual funds using live NAV
+                and scheme data pulled from the mfapi public API — built to make
+                fund research faster and clearer.
+              </p>
+              <div class="tags">
+                <span class="tag">JavaScript</span
+                ><span class="tag">mfapi.in</span
+                ><span class="tag">REST API</span>
+              </div>
+              <div class="repo-footer">
+                <a
+                  href="https://mutualfundscreener.pages.dev"
+                  target="_blank"
+                  rel="noopener"
+                  class="btn btn-primary"
+                  >Live Demo ↗</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="repo-card reveal">
+            <div class="repo-shine"></div>
+            <div class="repo-head">
+              <span class="dot dot-red"></span
+              ><span class="dot dot-amber"></span
+              ><span class="dot dot-green"></span>
+              <span class="repo-name">bluetooth-sleep-timer.kt</span>
+            </div>
+            <div class="repo-body">
+              <div class="repo-title">Bluetooth Sleep Timer</div>
+              <p class="repo-desc">
+                An Android app that automatically turns off Bluetooth once a
+                sleep timer ends and tracks usage over time — so headphones
+                don't stay connected all night by accident.
+              </p>
+              <div class="tags">
+                <span class="tag">Kotlin</span
+                ><span class="tag">Android SDK</span
+                ><span class="tag">Bluetooth</span>
+              </div>
+              <div class="repo-footer">
+                <a
+                  href="https://github.com/anushkumar701"
+                  target="_blank"
+                  rel="noopener"
+                  class="btn btn-ghost"
+                  >View on GitHub ↗</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="wrap">
+        <div class="eyebrow">contact</div>
+        <h2 class="section-title reveal">Let's talk</h2>
+        <div class="contact-term reveal">
+          <div class="terminal-titlebar">
+            <span class="dot dot-red"></span><span class="dot dot-amber"></span
+            ><span class="dot dot-green"></span>
+            <span class="terminal-title">anush@dev:~/contact</span>
+          </div>
+          <div class="contact-rows">
+            <div class="contact-row">
+              <span class="prompt2">➜</span>
+              <a href="mailto:anushk0908@gmail.com">anushk0908@gmail.com</a>
+              <button
+                class="copy-btn"
+                id="copyEmail"
+                data-value="anushk0908@gmail.com"
+              >
+                copy
+              </button>
+            </div>
+            <div class="contact-row">
+              <span class="prompt2">➜</span>
+              <a
+                href="https://www.linkedin.com/in/anush-kumar-k"
+                target="_blank"
+                rel="noopener"
+                >linkedin.com/in/anush-kumar-k</a
+              >
+            </div>
+            <div class="contact-row">
+              <span class="prompt2">➜</span>
+              <a
+                href="https://github.com/anushkumar701"
+                target="_blank"
+                rel="noopener"
+                >github.com/anushkumar701</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>anush@dev:~$ built with care <span class="blink">▍</span></footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+      (function () {
+        const REDUCE = window.matchMedia(
+          "(prefers-reduced-motion: reduce)",
+        ).matches;
+        const TOUCH = window.matchMedia("(pointer: coarse)").matches;
+
+        /* ---------------- PRELOADER ---------------- */
+        const preloader = document.getElementById("preloader");
+        const bar = document.getElementById("preloadBar");
+        const pct = document.getElementById("preloadPct");
+        const lines = document.querySelectorAll(".preload-line");
+
+        function runPreloader() {
+          const lineDelay = REDUCE ? 0 : 220;
+          lines.forEach((l, i) =>
+            setTimeout(() => l.classList.add("show"), i * lineDelay),
+          );
+
+          const totalTime = REDUCE ? 150 : 1400;
+          const start = performance.now();
+          function tick(now) {
+            const p = Math.min(1, (now - start) / totalTime);
+            const val = Math.round(p * 100);
+            bar.style.width = val + "%";
+            pct.textContent = val + "%";
+            if (p < 1) {
+              requestAnimationFrame(tick);
+            } else {
+              setTimeout(finish, REDUCE ? 0 : 250);
+            }
+          }
+          requestAnimationFrame(tick);
+        }
+
+        function finish() {
+          preloader.classList.add("hide");
+          document.body.style.overflow = "";
+          startHeroSequence();
+        }
+
+        document.body.style.overflow = "hidden";
+        window.addEventListener("load", () => setTimeout(runPreloader, 150));
+
+        /* ---------------- HERO ENTRANCE ---------------- */
+        const headline = document.getElementById("heroHeadline");
+        const rawText = headline.textContent;
+        headline.innerHTML = rawText
+          .split("")
+          .map((ch, i) => {
+            const safe = ch === " " ? "&nbsp;" : ch;
+            return (
+              '<span class="char" style="transition-delay:' +
+              (REDUCE ? 0 : i * 16) +
+              'ms">' +
+              safe +
+              "</span>"
+            );
+          })
+          .join("");
+
+        function startHeroSequence() {
+          const role = document.getElementById("heroRole");
+          const sub = document.getElementById("heroSub");
+          const ctas = document.getElementById("heroCtas");
+          const terminal = document.getElementById("heroTerminal");
+
+          headline.classList.add("show");
+          setTimeout(() => role.classList.add("show"), REDUCE ? 0 : 420);
+          setTimeout(() => sub.classList.add("show"), REDUCE ? 0 : 520);
+          setTimeout(() => terminal.classList.add("show"), REDUCE ? 0 : 480);
+          setTimeout(() => ctas.classList.add("show"), REDUCE ? 0 : 620);
+
+          setTimeout(
+            () => {
+              const nameEl = document.getElementById("typeName");
+              const summaryEl = document.getElementById("typeSummary");
+              const cursorEl = document.getElementById("finalCursor");
+              typeText(nameEl, "Anush Kumar K", 50, () => {
+                setTimeout(() => {
+                  typeText(
+                    summaryEl,
+                    "mutual-fund-screener.js   bluetooth-sleep-timer.kt",
+                    20,
+                    () => {
+                      cursorEl.classList.add("show-cursor");
+                    },
+                  );
+                }, 200);
+              });
+            },
+            REDUCE ? 0 : 950,
+          );
+        }
+
+        function typeText(el, text, speed, cb) {
+          let i = 0;
+          el.textContent = "";
+          if (REDUCE) {
+            el.textContent = text;
+            if (cb) cb();
+            return;
+          }
+          const timer = setInterval(() => {
+            el.textContent += text.charAt(i);
+            i++;
+            if (i >= text.length) {
+              clearInterval(timer);
+              if (cb) cb();
+            }
+          }, speed);
+        }
+
+        /* ---------------- SCROLL REVEAL ---------------- */
+        const revealEls = document.querySelectorAll(".reveal");
+        const revealObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("in-view");
+                revealObserver.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.15 },
+        );
+        revealEls.forEach((el) => revealObserver.observe(el));
+
+        /* gradle stagger */
+        const gradleCard = document.getElementById("gradleCard");
+        const gradleObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                const gLines = gradleCard.querySelectorAll(".gradle-line");
+                gLines.forEach((line, i) => {
+                  setTimeout(
+                    () => {
+                      line.classList.add("show");
+                      const check = line.querySelector(".gradle-check");
+                      setTimeout(
+                        () => check && check.classList.add("show"),
+                        REDUCE ? 0 : 250,
+                      );
+                    },
+                    REDUCE ? 0 : i * 130,
+                  );
+                });
+                gradleObserver.unobserve(gradleCard);
+              }
+            });
+          },
+          { threshold: 0.3 },
+        );
+        gradleObserver.observe(gradleCard);
+
+        /* ---------------- NAV PILL + SCROLLSPY + GIT RAIL ---------------- */
+        const navLinksEl = document.getElementById("navlinks");
+        const navPill = document.getElementById("navPill");
+        const navLinks = document.querySelectorAll(".nav-link");
+        const railNodes = document.querySelectorAll(".rail-node");
+        const sections = document.querySelectorAll("section[id]");
+
+        function movePill(link) {
+          const r = link.getBoundingClientRect();
+          const pr = navLinksEl.getBoundingClientRect();
+          navPill.style.left = r.left - pr.left + "px";
+          navPill.style.width = r.width + "px";
+        }
+        movePill(document.querySelector(".nav-link.active"));
+
+        const navObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                const id = entry.target.getAttribute("id");
+                navLinks.forEach((link) => {
+                  const isActive = link.getAttribute("href") === "#" + id;
+                  link.classList.toggle("active", isActive);
+                  if (isActive) movePill(link);
+                });
+                railNodes.forEach((node) =>
+                  node.classList.toggle("active", node.dataset.target === id),
+                );
+              }
+            });
+          },
+          { threshold: 0.4, rootMargin: "-80px 0px -50% 0px" },
+        );
+        sections.forEach((sec) => navObserver.observe(sec));
+
+        window.addEventListener("resize", () =>
+          movePill(document.querySelector(".nav-link.active")),
+        );
+
+        function layoutRail() {
+          const docHeight =
+            document.documentElement.scrollHeight - window.innerHeight;
+          sections.forEach((sec) => {
+            const node = document.querySelector(
+              '.rail-node[data-target="' + sec.id + '"]',
+            );
+            if (!node) return;
+            const p = Math.min(
+              100,
+              Math.max(0, (sec.offsetTop / docHeight) * 100),
+            );
+            node.style.top = p + "%";
+          });
+        }
+        layoutRail();
+        window.addEventListener("resize", layoutRail);
+
+        const railFill = document.getElementById("railFill");
+        function updateRailFill() {
+          const docHeight =
+            document.documentElement.scrollHeight - window.innerHeight;
+          const p = docHeight > 0 ? (window.scrollY / docHeight) * 100 : 0;
+          railFill.style.height = Math.min(100, Math.max(0, p)) + "%";
+        }
+        window.addEventListener("scroll", updateRailFill, { passive: true });
+        updateRailFill();
+
+        /* ---------------- CUSTOM CURSOR ---------------- */
+        if (!REDUCE && !TOUCH) {
+          document.body.classList.add("custom-cursor");
+          const dotEl = document.getElementById("cursorDot");
+          const ringEl = document.getElementById("cursorRing");
+          let mx = 0,
+            my = 0,
+            rx = 0,
+            ry = 0;
+          window.addEventListener("mousemove", (e) => {
+            mx = e.clientX;
+            my = e.clientY;
+            dotEl.style.left = mx + "px";
+            dotEl.style.top = my + "px";
+          });
+          function loop() {
+            rx += (mx - rx) * 0.18;
+            ry += (my - ry) * 0.18;
+            ringEl.style.left = rx + "px";
+            ringEl.style.top = ry + "px";
+            requestAnimationFrame(loop);
+          }
+          loop();
+          document.querySelectorAll("a, button, .repo-card").forEach((el) => {
+            el.addEventListener("mouseenter", () =>
+              ringEl.classList.add("hovered"),
+            );
+            el.addEventListener("mouseleave", () =>
+              ringEl.classList.remove("hovered"),
+            );
+          });
+        }
+
+        /* ---------------- MAGNETIC BUTTONS ---------------- */
+        if (!REDUCE && !TOUCH) {
+          document.querySelectorAll(".btn").forEach((btn) => {
+            btn.addEventListener("mousemove", (e) => {
+              const r = btn.getBoundingClientRect();
+              const relX = e.clientX - r.left - r.width / 2;
+              const relY = e.clientY - r.top - r.height / 2;
+              btn.style.transform =
+                "translate(" + relX * 0.25 + "px," + (relY * 0.35 - 2) + "px)";
+            });
+            btn.addEventListener("mouseleave", () => {
+              btn.style.transform = "";
+            });
+          });
+        }
+
+        /* ---------------- TILT: repo cards + terminal ---------------- */
+        if (!REDUCE && !TOUCH) {
+          document.querySelectorAll(".repo-card, .terminal").forEach((card) => {
+            card.addEventListener("mousemove", (e) => {
+              const r = card.getBoundingClientRect();
+              const px = (e.clientX - r.left) / r.width - 0.5;
+              const py = (e.clientY - r.top) / r.height - 0.5;
+              card.style.transform =
+                "perspective(700px) rotateX(" +
+                -py * 6 +
+                "deg) rotateY(" +
+                px * 6 +
+                "deg)";
+            });
+            card.addEventListener("mouseleave", () => {
+              card.style.transform = "";
+            });
+          });
+        }
+
+        /* ---------------- COPY EMAIL ---------------- */
+        const copyBtn = document.getElementById("copyEmail");
+        copyBtn.addEventListener("click", () => {
+          navigator.clipboard.writeText(copyBtn.dataset.value).then(() => {
+            copyBtn.textContent = "copied";
+            copyBtn.classList.add("copied");
+            setTimeout(() => {
+              copyBtn.textContent = "copy";
+              copyBtn.classList.remove("copied");
+            }, 1600);
+          });
+        });
+
+        /* ---------------- 3D HERO SCENE ---------------- */
+        function initHero3D() {
+          const canvas = document.getElementById("hero3d");
+          if (!canvas || typeof THREE === "undefined") return;
+          let renderer;
+          try {
+            renderer = new THREE.WebGLRenderer({
+              canvas,
+              alpha: true,
+              antialias: true,
+            });
+          } catch (e) {
+            return;
+          }
+          renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+
+          const scene = new THREE.Scene();
+          scene.fog = new THREE.FogExp2(0x0b1220, 0.05);
+
+          const camera = new THREE.PerspectiveCamera(55, 1, 0.1, 100);
+          camera.position.set(0, 0, 15);
+
+          const group = new THREE.Group();
+          scene.add(group);
+
+          const coreGeo = new THREE.IcosahedronGeometry(3, 1);
+          const edges = new THREE.EdgesGeometry(coreGeo);
+          const coreLines = new THREE.LineSegments(
+            edges,
+            new THREE.LineBasicMaterial({
+              color: 0x5fc9bf,
+              transparent: true,
+              opacity: 0.55,
+            }),
+          );
+          group.add(coreLines);
+
+          const glowGeo = new THREE.IcosahedronGeometry(3.2, 1);
+          const glowMat = new THREE.MeshBasicMaterial({
+            color: 0x5fc9bf,
+            transparent: true,
+            opacity: 0.05,
+            side: THREE.BackSide,
+          });
+          group.add(new THREE.Mesh(glowGeo, glowMat));
+
+          const nodeDefs = [
+            {
+              geo: () => new THREE.OctahedronGeometry(0.45),
+              color: 0xe3a857,
+              radius: 5.4,
+              speed: 0.5,
+              offset: 0,
+            },
+            {
+              geo: () => new THREE.BoxGeometry(0.6, 0.6, 0.6),
+              color: 0x5fc9bf,
+              radius: 6.4,
+              speed: 0.35,
+              offset: 1.2,
+            },
+            {
+              geo: () => new THREE.SphereGeometry(0.4, 16, 16),
+              color: 0x6fcf97,
+              radius: 4.6,
+              speed: 0.65,
+              offset: 2.4,
+            },
+            {
+              geo: () => new THREE.TorusGeometry(0.4, 0.13, 10, 24),
+              color: 0xe3a857,
+              radius: 7.2,
+              speed: 0.28,
+              offset: 3.6,
+            },
+            {
+              geo: () => new THREE.OctahedronGeometry(0.35),
+              color: 0x5fc9bf,
+              radius: 5.9,
+              speed: 0.45,
+              offset: 4.8,
+            },
+          ];
+
+          const nodes = nodeDefs.map((def) => {
+            const mesh = new THREE.Mesh(
+              def.geo(),
+              new THREE.MeshStandardMaterial({
+                color: def.color,
+                metalness: 0.3,
+                roughness: 0.4,
+                emissive: def.color,
+                emissiveIntensity: 0.25,
+              }),
+            );
+            group.add(mesh);
+            return Object.assign({ mesh }, def);
+          });
+
+          const lineMat = new THREE.LineBasicMaterial({
+            color: 0x233151,
+            transparent: true,
+            opacity: 0.5,
+          });
+          const lines = nodes.map(() => {
+            const geo = new THREE.BufferGeometry().setFromPoints([
+              new THREE.Vector3(0, 0, 0),
+              new THREE.Vector3(0, 0, 0),
+            ]);
+            const line = new THREE.Line(geo, lineMat);
+            group.add(line);
+            return line;
+          });
+
+          const particleCount = 240;
+          const positions = new Float32Array(particleCount * 3);
+          for (let i = 0; i < particleCount; i++) {
+            positions[i * 3] = (Math.random() - 0.5) * 40;
+            positions[i * 3 + 1] = (Math.random() - 0.5) * 40;
+            positions[i * 3 + 2] = (Math.random() - 0.5) * 40;
+          }
+          const particleGeo = new THREE.BufferGeometry();
+          particleGeo.setAttribute(
+            "position",
+            new THREE.BufferAttribute(positions, 3),
+          );
+          const particleMat = new THREE.PointsMaterial({
+            color: 0x5fc9bf,
+            size: 0.045,
+            transparent: true,
+            opacity: 0.35,
+          });
+          const particles = new THREE.Points(particleGeo, particleMat);
+          scene.add(particles);
+
+          scene.add(new THREE.AmbientLight(0x8899bb, 0.6));
+          const pl1 = new THREE.PointLight(0x5fc9bf, 1.2, 30);
+          pl1.position.set(6, 4, 8);
+          scene.add(pl1);
+          const pl2 = new THREE.PointLight(0xe3a857, 1.0, 30);
+          pl2.position.set(-6, -3, 6);
+          scene.add(pl2);
+
+          let mouseX = 0,
+            mouseY = 0,
+            targetRotX = 0,
+            targetRotY = 0;
+          if (!TOUCH && !REDUCE) {
+            window.addEventListener("mousemove", (e) => {
+              mouseX = e.clientX / window.innerWidth - 0.5;
+              mouseY = e.clientY / window.innerHeight - 0.5;
+            });
+          }
+
+          function resize() {
+            const rect = canvas.getBoundingClientRect();
+            const w = rect.width,
+              h = rect.height;
+            if (w === 0 || h === 0) return;
+            renderer.setSize(w, h, false);
+            camera.aspect = w / h;
+            camera.updateProjectionMatrix();
+          }
+          window.addEventListener("resize", resize);
+          resize();
+
+          let running = true;
+          const heroSection = document.getElementById("home");
+          const heroObserver = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                running = entry.isIntersecting;
+              });
+            },
+            { threshold: 0 },
+          );
+          heroObserver.observe(heroSection);
+
+          function updateScrollFade() {
+            const h = heroSection.offsetHeight;
+            const p = Math.min(1, Math.max(0, window.scrollY / (h * 0.9)));
+            canvas.style.opacity = 1 - p;
+          }
+          window.addEventListener("scroll", updateScrollFade, {
+            passive: true,
+          });
+          updateScrollFade();
+
+          const clock = new THREE.Clock();
+          function animate() {
+            if (!REDUCE) requestAnimationFrame(animate);
+            if (!REDUCE && !running) return;
+            const t = clock.getElapsedTime();
+
+            targetRotX += (-mouseY * 0.3 - targetRotX) * 0.04;
+            targetRotY += (mouseX * 0.3 - targetRotY) * 0.04;
+            group.rotation.x = Math.sin(t * 0.15) * 0.05 + targetRotX;
+            group.rotation.y = t * 0.08 + targetRotY;
+
+            nodes.forEach((n, i) => {
+              const a = t * n.speed + n.offset;
+              n.mesh.position.set(
+                Math.cos(a) * n.radius,
+                Math.sin(a * 0.7) * 1.4,
+                Math.sin(a) * n.radius,
+              );
+              n.mesh.rotation.x += 0.01;
+              n.mesh.rotation.y += 0.012;
+              const posAttr = lines[i].geometry.attributes.position;
+              posAttr.setXYZ(
+                1,
+                n.mesh.position.x,
+                n.mesh.position.y,
+                n.mesh.position.z,
+              );
+              posAttr.needsUpdate = true;
+            });
+
+            coreLines.rotation.y -= 0.002;
+            particles.rotation.y = t * 0.01;
+
+            renderer.render(scene, camera);
+          }
+          animate();
+        }
+        initHero3D();
+      })();
+    </script>
+  </body>
+</html>
