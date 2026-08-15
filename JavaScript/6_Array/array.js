@@ -123,3 +123,4 @@ let arr5 = ["java", "node", "express", "python"];
 arr5.splice(2, 0, "javascript");
 
 console.log(arr5);
+    
