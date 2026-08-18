@@ -2082,8 +2082,37 @@ console.log(student);
 ---
 
 acessing object by using [] squar bracket
-   syntax
+   syntax   
          objectname["key]
 ```js
   console.log(student["sname"]) //miller
   console.log(student[sname]) //error
+
+Object Destructure
+    it is a feature used to extract multiple properties from an object and assign them to distinct variables using a singel statement
+
+for performing this we need {},isnde that all the keyname we have to provide ,so that we can use them as seperate variables.
+
+Rest parameter
+    it allows a fucntion to accept an indefinite number of arguments as an array
+    it is denoted by three dots(...)
+    we can use this only for the last parameter.
+
+Spread Operator
+    It is used for an iterble (like an array or String) or an object to be expanded or "unpacked" into individual elements or properties.
+    it is also denoted by three dots(...)
+
+Shallow copy
+    When we are assigning any object or array inside any varibale if we make any charge in any one of them it will modify both of them
+
+```js
+let subjects=["java","python","sql"]
+let copy=[...subjects]
+copy.push("webtech")
+console.log(subjects); [java, python, sql]
+console.log(copy); [java, python, sql, webtech]
+```
+
+
+Deep Copy
+
